@@ -49,9 +49,7 @@
             border-radius: 14px;
             padding: 20px;
             margin-bottom: 25px;
-            transition: 0.2s;
         }
-        .question-card:hover { border-color: #bdd4e7; }
         .question-text {
             font-weight: 700;
             font-size: 1.05rem;
@@ -75,7 +73,6 @@
             border-radius: 12px;
             background: #ffffff;
             border: 1px solid #e2e8f0;
-            transition: 0.1s;
         }
         .option-item:hover { background: #f1f5f9; }
         .option-check {
@@ -118,7 +115,6 @@
             font-weight: 700;
             font-size: 1rem;
             cursor: pointer;
-            transition: 0.2s;
         }
         .btn-check { background: #2a9d8f; color: white; }
         .btn-reset { background: #475569; color: white; }
@@ -140,7 +136,6 @@
         @media (max-width: 700px) {
             .questions-area { padding: 15px; }
             .question-card { padding: 14px; }
-            .button-bar { gap: 12px; }
             button { padding: 8px 18px; }
         }
     </style>
@@ -163,12 +158,12 @@
     <div class="results-panel" id="resultsPanel">
         📊 Kliknite "Provjeri sve" za prikaz rezultata
     </div>
-    <footer>Kviz prema originalnom dokumentu. Boduje se samo potpuno tačan odgovor (svi tačni checkboxovi označeni, nijedan netačan).</footer>
+    <footer>Kviz prema originalnom dokumentu. Boduje se samo potpuno tačan odgovor.</footer>
 </div>
 
 <script>
     // --------------------------------------------------------------
-    // SVIH 160 PITANJA SA ORIGINALNIM DUGIM TEKSTOVIMA (pitanja i opcije)
+    // SVIH 160 PITANJA - KOMPLETAN ISPRAVLJEN KOD
     // --------------------------------------------------------------
     const questionsData = [];
 
@@ -185,7 +180,7 @@
         });
     }
 
-    // ======================= 1 - 20 =======================
+    // === 1-20 ===
     addQ(1, "Prema važećim propisima koji se odnose na oporezivanje dobiti pravnih lica, porez po odbitku plaća se na:", ['c'],
         "prihode ostvarene na inozemnom tržištu", "prihode isplaćene poslovnoj jedinici stranog pravnog lica registriranoj u BiH", "prihode isplaćene stranom pravnom licu", "sva plaćanja po osnovu usluga izvršenih od stranog pravnog lica");
     addQ(2, "U toku jednog mjeseca, porezni obveznik u sistemu PDV-a fakturirao je oporezive usluge u vrijednosti od 100.000 KM (ne računajući PDV), od čega je u istom mjesecu naplaćeno 50%, evidentirao ulazne fakture po osnovu oporezivih nabavki u iznosu od 50.000 KM (ne računajući PDV), od čega je u istom mjesecu plaćeno 50% i izvršio plaćanja u iznosu od 10.000 KM prema ino dobavljaču angažiranom na pružanju konsultanstkih usluga. Stopa PDV-a je 17%. Obaveza za PDV za promatrani mjesec iznosi:", ['a'],
@@ -226,302 +221,302 @@
         "zatezne kamate po osnovu javnih prihoda koji se plaćaju i obračunavaju prema poreznim administracijama", "zatezne kamate iz dužničko vjerovničkih odnosa sa povezanim osobama", "zatezne kamate iz dužničko vjerovničkih odnosa sa nepovezanim osobama", "sudski troškovi vezani uz sporove oko javnih prihoda bilo da ih je porezni obveznik stvarno snosio ili da su nadoknađeni");
     addQ(20, "Prema zakonima o porezu na dobit u BiH, ako drugačije nije propisano ratificiranim međunarodnim ugovorima o izbjegavanju dvostrukog oporezivanja, porez po odbitku obračunava se po osnovi isplate ili na drugi način izmirene:", ['a','b','c'],
         "dividende, odnosno raspodjela iz dobiti", "kamate ili njezinog funkcionalnog ekvivalenta po financijskim instrumentima i aranžmanima", "naknada za autorska prava i druga prava intelektualnog vlasništva", "ništa od prethodno navedenog");
-
-    // ======================= 21 - 40 =======================
+    
+    // === 21-40 ===
     addQ(21, "Privredna društva, u skladu s odredbama Zakona o privrednim društvima, mogu biti organizirana u pravnoj formi:", ['a','b'],
         "komanditnog društva", "društva sa ograničenom odgovornošću", "mikrokreditnog društva", "društva računovođa i revizora");
-    addQ(22, "Za utvrđivanje usklađenosti transakcija između povezanih lica sa principom „van dohvata ruke" može se koristiti:", ['a','c'],
+    addQ(22, "Za utvrđivanje usklađenosti transakcija između povezanih lica sa principom „van dohvata ruke“ može se koristiti:", ['a','c'],
         "metodu cijene koštanja uvećane za uobičajenu zaradu", "FIFO metodu", "metodu preprodajne cijene", "metodu alokacije");
     addQ(23, "U poreznu osnovicu PDV-a kod prometa dobara i usluga uračunavaju se:", ['a','d'],
-        "akciza, carina i druge uvozne dažbine, kao i ostali javni prihodi, osim PDV-a", "iznosi kamata koje je prodavatelj, odnosno davalatelj usluga obračunao na iznos koji je kupac dugovao...", "popusti i druga umanjenja cijene...", "svi sporedni troškovi koje obveznik obračunava primatelju dobara i usluga (provizije, troškovi pakiranja, prijevoza, osiguranja i drugi vanredni troškovi koje isporučitelj obračunava kupcu)");
+        "akciza, carina i druge uvozne dažbine, kao i ostali javni prihodi, osim PDV-a", "iznosi kamata koje je prodavatelj obračunao na iznos koji je kupac dugovao", "popusti i druga umanjenja cijene", "svi sporedni troškovi koje obveznik obračunava primatelju (provizije, pakiranje, prijevoz, osiguranje)");
     addQ(24, "Akciznim proizvodima, u smislu Zakona o akcizama u BiH, smatraju se:", ['a','b'],
         "naftni derivati", "bezalkoholna pića", "slatkiši", "igračke");
     addQ(25, "Organi stečajnog postupka su:", ['a','b','d'],
         "stečajni sudac", "stečajni upravnik", "notar", "skupština vjerovnika");
     addQ(26, "Najniža nominalna vrijednost dionice kod dioničkog društva ne može biti manja od:", ['a'],
         "1 KM", "50 KM", "100 KM", "5.000 KM");
-    addQ(27, "Pravna lica i odgovorna lica u pravnim licima koja su obavezna poduzimati mjere i radnje radi otkrivanja i sprečavanja pranja novca u skladu sa Zakonom o sprečavanju pranja novca i financiranja terorističkih aktivnosti su:", ['a','b','c'],
+    addQ(27, "Pravna lica i odgovorna lica koja su obavezna poduzimati mjere radi otkrivanja i sprečavanja pranja novca su:", ['a','b','c'],
         "banke", "mjenjačnice", "kockarnice", "ništa od navedenog");
     addQ(28, "Posebna shema za naplatu PDV-a na promet vezana je za:", ['c'],
-        "špediterske poslove", "marketing", "građevinske radove", "advokate (odvjetnike)");
-    addQ(29, "Poslovno ime društva s ograničenom odgovornošću sadrži oznaku „društvo s ograničenom odgovornošću" ili skraćenicu:", ['b'],
-        "„k.d.“ ili „kd“", "„d.o.o.“ ili „doo“", "„a.d.“ ili „ad“", "„o.d.“ ili „od“");
+        "špediterske poslove", "marketing", "građevinske radove", "advokate");
+    addQ(29, "Poslovno ime društva s ograničenom odgovornošću sadrži oznaku d.o.o. ili skraćenicu:", ['b'],
+        "k.d.", "d.o.o.", "a.d.", "o.d.");
     addQ(30, "Porez na dobit ne plaćaju:", ['a'],
         "jedinice lokalne samouprave", "osiguravajuća društva", "tržni centri", "restorani");
-    addQ(31, "Kod dioničkih društava i društava sa ograničenom odgovornošću, usvajanje (odobravanje) godišnjeg financijskog izvještaja društva, te odlučivanje o rasporedu dobiti, odnosno načinu pokrića gubitka, je u nadležnosti:", ['c'],
-        "Uprave ili direktora društva", "Odbora za reviziju", "Skupštine", "Nadzornog odbora");
-    addQ(32, "Kod društava sa ograničenom odgovornošću, dobit se dijeli među članovima društva:", ['c'],
-        "razmjerno s visinom udjela", "sukladno ugovoru", "razmjerno s visinom udjela, ako drukčije nije ugovoreno", "ništa od prethodno navedenog");
+    addQ(31, "Usvajanje godišnjeg finansijskog izvještaja i odlučivanje o rasporedu dobiti kod d.d. i d.o.o. je u nadležnosti:", ['c'],
+        "Uprave", "Odbora za reviziju", "Skupštine", "Nadzornog odbora");
+    addQ(32, "Kod d.o.o., dobit se dijeli među članovima:", ['c'],
+        "razmjerno s visinom udjela", "sukladno ugovoru", "razmjerno s visinom udjela, ako drukčije nije ugovoreno", "ništa od navedenog");
     addQ(33, "Kod dioničkih društava, fond zakonskih rezervi formira se iz:", ['a'],
         "dobiti i drugih izvora", "dividende", "gubitka", "upisanog temeljnog kapitala");
-    addQ(34, "Porezni obveznik PDV-a je isporučio robu drugom poreznom obvezniku po cijeni od 19.500 KM. Troškovi prijevoza od prodavatelja do kupca iznose 500 KM i iskazuju se kao posebna stavka na računu (odvojeno od cijene robe). Na računu za isporučenu robu posebno su iskazane i zatezne kamate za neblagovremeno plaćanje isporuka iz ranijih razdoblja u iznosu od 500 KM. Porezni obveznik treba na predmetnom poreznom računu iskazati PDV u ukupnom iznosu od:", ['b'],
-        "3.315 KM", "3.400 KM", "3.485 KM", "ništa od prethodno navedenog");
-    addQ(35, "Prema Zakonu o PDV-u u BiH, porezni obveznik ne može ostvariti pravo na odbitak ulaznog poreza na:", ['d'],
-        "nabavku električne energije za potrebe uprave", "nabavku sirovina i materijala za potrebe administracije", "nabavku teretnih vozila", "nabavku putničkih vozila");
-    addQ(36, "Prema Zakonu o PDV-u, knjižna obavijest se izdaje u sljedećim slučajevima:", ['a','b','c'],
-        "kada se roba vraća nakon ispostavljanja fakture", "kada dobavljač dobara, odnosno davatelj usluga nakon ispostavljanja fakture odobri sniženje cijene ili popust", "kada dobavljač dobara, odnosno davatelj usluga primi dodatnu uplatu za isporučena dobra, odnosno izvršene usluge nakon ispostavljanja fakture", "ništa od prethodno navedenog");
-    addQ(37, "Neto plaća zaposlenika 621 KM, obvezni doprinosi iz plaća 310 KM, a porez na dohodak 69 KM. Dohodak od nesamostalnog rada (osobnih primanja po osnovi radnog odnosa), nakon odbitka porezno dopuštenih rashoda, iznosi:", ['d'],
+    addQ(34, "Porezni obveznik PDV-a je isporučio robu drugom poreznom obvezniku po cijeni od 19.500 KM. Troškovi prijevoza od prodavatelja do kupca iznose 500 KM i iskazuju se kao posebna stavka na računu. Na računu su iskazane i zatezne kamate od 500 KM. PDV ukupno:", ['b'],
+        "3.315 KM", "3.400 KM", "3.485 KM", "ništa od navedenog");
+    addQ(35, "Porezni obveznik ne može ostvariti pravo na odbitak ulaznog PDV-a na:", ['d'],
+        "električnu energiju za upravu", "sirovine za administraciju", "teretna vozila", "nabavku putničkih vozila");
+    addQ(36, "Knjižna obavijest se izdaje:", ['a','b','c'],
+        "kada se roba vraća nakon fakture", "kada dobavljač odobri sniženje cijene", "kada dobavljač primi dodatnu uplatu nakon fakture", "ništa od navedenog");
+    addQ(37, "Neto plaća 621 KM, doprinosi 310 KM, porez 69 KM. Dohodak od nesamostalnog rada iznosi:", ['d'],
         "621 KM", "690 KM", "931 KM", "1.000 KM");
-    addQ(38, "Prema zakonima o porezu na dobit u BiH, porezno nepriznatim rashodima smatraju se:", ['a','c'],
-        "novčane kazne koje izriče nadležno tijelo", "ispravka vrijednosti pojedinačnih potraživanja od osoba kojima se istovremeno duguje", "donacije, pokloni i prilozi političkim strankama i organizacijama", "rashodi nastali na ime evidentiranja zaliha u iznosima iskazanim primjenom metode prosječne nabavne cijene");
-    addQ(39, "Prema zakonima o porezu na dobit u BiH, obračunu amortizacije ne podliježu:", ['b','c'],
+    addQ(38, "Porezno nepriznatim rashodima smatraju se:", ['a','c'],
+        "novčane kazne", "ispravka vrijednosti potraživanja od osoba kojima se duguje", "donacije političkim strankama", "rashodi evidentiranja zaliha metodom prosječne cijene");
+    addQ(39, "Obračunu amortizacije ne podliježu:", ['b','c'],
         "građevinski objekti", "knjige i umjetnička djela", "zemljišta", "postrojenja i oprema");
-    addQ(40, "Opći uvjeti za provođenje dvostrane kompenzacije definirani su u Zakonu o obligacijskim odnosima koji propisuje da dužnik može prebiti potraživanje koje ima prema vjerovniku sa onim što ovaj potražuje od njega, ako:", ['c'],
-        "oba potraživanja glase na novac ili druge zamjenjive stvari istog roda", "oba potraživanja glase na novac ili druge zamjenjive stvari istog roda i iste kakvoće", "oba potraživanja glase na novac ili druge zamjenjive stvari istog roda i iste kakvoće i ako su oba dospjela", "ništa od prethodno navedenog");
-
-    // ======================= 41 - 60 =======================
-    addQ(41, "U skladu s odredbama Zakona o porezu na dohodak, stopa poreza na dohodak od samostalne djelatnosti iznosi:", ['b'],
+    addQ(40, "Opći uvjeti za kompenzaciju (prebijanje):", ['c'],
+        "oba potraživanja na novac ili zamjenjive stvari istog roda", "ista kakvoća", "oba dospjela i istog roda i kakvoće", "ništa od navedenog");
+    
+    // === 41-60 ===
+    addQ(41, "Stopa poreza na dohodak od samostalne djelatnosti iznosi:", ['b'],
         "8%", "10%", "13%", "17%");
-    addQ(42, "Informacije o poslovanju za koje je očigledno da bi prouzrokovale značajnu štetu privrednom društvu ako dođu u posjed trećeg lica bez suglasnosti društva nazivaju se:", ['c'],
+    addQ(42, "Informacije čije bi otkrivanje prouzrokovalo značajnu štetu nazivaju se:", ['c'],
         "validnom tajnom", "privrednom tajnom", "poslovnom tajnom", "poduzetničkom tajnom");
-    addQ(43, "Kod ugovora o ustupanju potraživanja (cesije) razlikujemo sljedeće ugovorne strane:", ['b','c','d'],
-        "asignant (uputitelj)", "ustupitelj (prenositelj) prava", "prijemnik prava", "dužnik");
-    addQ(44, "Razlog za otvaranje stečajnog postupka postoji kad dužnik nije u stanju da izvršava svoje dospjele i potraživane obaveze plaćanja, odnosno ako je:", ['b'],
-        "platežno sposoban", "platežno nesposoban", "zaposlio nedovoljan broj radnika", "riječ o stranom pravnom licu");
-    addQ(45, "Porezno nepriznatim rashodima u smislu Zakona o porezu na dobit smatraju se:", ['a','b','c'],
-        "novčane kazne", "izdaci učinjeni u korist političkih stranaka", "rashodi prinudne naplate javnih prihoda", "ništa od navedenog");
+    addQ(43, "Kod ugovora o cesiji razlikujemo strane:", ['b','c','d'],
+        "asignant", "ustupitelj (prenositelj) prava", "prijemnik prava", "dužnik");
+    addQ(44, "Razlog za otvaranje stečajnog postupka je:", ['b'],
+        "platežno sposoban", "platežno nesposoban", "zaposlio nedovoljan broj radnika", "strano pravno lice");
+    addQ(45, "Porezno nepriznati rashodi poreza na dobit:", ['a','b','c'],
+        "novčane kazne", "izdaci u korist političkih stranaka", "rashodi prinudne naplate javnih prihoda", "ništa od navedenog");
     addQ(46, "Inspekcijski nadzor nad primjenom Zakona o porezu na dohodak vrši:", ['c'],
         "Uprava za indirektno oporezivanje", "Ministarstvo financija", "Porezna uprava", "Jedinica lokalne samouprave");
-    addQ(47, "U situaciji kada u okviru posebne sheme za građevinarstvo izvođač radova angažira kooperanta za promet dobrima i uslugama koje utječu na izvođenje građevinskih radova koje vrši izvođač, obveznik plaćanja PDV-a koji obračuna kooperant je:", ['a'],
-        "izvođač radova", "investitor", "kooperant", "budući vlasnici stambenih jedinica");
-    addQ(48, "Kapitalni poslovi predstavljaju poslove zaključene između rezidenata i nerezidenata koji nisu tekući poslovi s inostranstvom i u njih ubrajamo:", ['a','b','c'],
+    addQ(47, "U posebnoj shemi za građevinarstvo, obveznik plaćanja PDV-a za kooperanta je:", ['a'],
+        "izvođač radova", "investitor", "kooperant", "budući vlasnici");
+    addQ(48, "Kapitalni poslovi između rezidenata i nerezidenata ubrajaju:", ['a','b','c'],
         "direktne investicije", "ulaganja u nekretnine", "kreditne poslove", "ništa od navedenog");
-    addQ(49, "U obavljanju djelatnosti poslovni subjekti mogu plaćati gotovim novcem:", ['a','c'],
-        "isplate penzija (mirovina), primanja iz oblasti boračko-invalidske zaštite i civilnih žrtava rata i druga davanja fizičkim licima iz oblasti socijalne i dječje zaštite", "isplate plaća zaposlenim radnicima", "isplatu štete fizičkom licu po osnovu osiguranja imovine i lica, ako njihov pojedinačni iznos ne prelazi 300 KM", "isplate poklona radnicima čija vrijednost prelazi iznos od 1.000 KM");
-    addQ(50, "Fizičko lice može obavljati poduzetničku (obrtnićku) djelatnost kao:", ['b','c'],
+    addQ(49, "Gotovim novcem mogu se plaćati:", ['a','c'],
+        "isplate penzija, boračko-invalidske zaštite", "isplate plaća zaposlenima", "isplata štete fizičkom licu do 300 KM", "pokloni radnicima preko 1.000 KM");
+    addQ(50, "Fizičko lice može obavljati poduzetničku djelatnost kao:", ['b','c'],
         "posebno zanimanje", "osnovno zanimanje", "dopunsko zanimanje", "prestižno zanimanje");
-    addQ(51, "Kod dioničkih društava i društava s ograničenom odgovornošću, organizacija rada i rukovođenje poslovanjem, zastupanje i predstavljanje društva i odgovornost za zakonitost poslovanja društva, je u nadležnosti:", ['c'],
+    addQ(51, "Kod dioničkih društava i d.o.o., organizacija rada i rukovođenje poslovanjem je u nadležnosti:", ['c'],
         "Skupštine", "Nadzornog odbora", "Uprave (direktora)", "Odbora za reviziju");
-    addQ(52, "Prema Zakonu o PDV-u u BiH, porezna obaveza nastaje u trenutku kada se izvrši jedna od sljedećih radnji:", ['a','b','c'],
-        "isporuka dobara ili vršenje usluga", "izdavanje poreznog računa (fakture)", "plaćanje ili djelomično plaćanje izvršeno prije izdavanja fakture", "ništa od prethodno navedenog");
-    addQ(53, "Prema Zakonu o PDV-u u BiH, obveznik ne može ostvariti pravo na odbitak ulaznog poreza na:", ['d'],
-        "nabavku električne energije za potrebe proizvodnog postrojenja", "nabavku sirovina i materijala za poslovne svrhe", "nabavku teretnih vozila", "nabavku putničkih automila");
-    addQ(54, "Porezno nepriznatim rashodima poreza na dobit smatraju se:", ['b'],
-        "rashodi plaća, na koje su obračunani pripadajući porezi i doprinosi", "rashodi na ime plaćenog poreza na dobit", "rashodi donacija nepovezanim osobama do visine do 3% ukupnog prihoda", "rashodi nastali na ime evidentiranja zaliha u iznosima iskazanim primjenom metode prosječne nabavne cijene");
-    addQ(55, "Prema zakonima o obligacijskim odnosima u BiH, cesija je obvezno pravni posao u koji su uključeni cesus, cesionar i cedent, a za čiju pravnu valjanost:", ['c'],
-        "nije potrebna suglasnost cedenta ili ustupitelja potraživanja", "nije potrebna suglasnost cesionara ili primatelja potraživanja", "nije potrebna suglasnost cesusa ili dužnika", "potrebna je suglasnost svih strana");
-    addQ(56, "Donacije u humanitarne, socijalne, kulturne i sportske svrhe su porezno priznat rashod u iznosu do:", ['b'],
-        "2% od ukupnog prihoda u toj poreznoj godini", "3% od ukupnog prihoda u toj poreznoj godini", "4% od ukupnog prihoda u toj poreznoj godini", "5% od ukupnog prihoda u toj poreznoj godini");
-    addQ(57, "Poduzeće prodaje poslovni prostor, za koji je prilikom nabavke koristilo odbitak ulaznog PDV-a. Poslovni prostor se prodaje istekom 12 godine od nabavke istog. Porezni obveznik prilikom prodaje poslovnog prostora:", ['d'],
-        "ima obavezu obračunati i iskazati PDV na poreznom računu", "ima obavezu izvršiti ispravku odbitka ulaznog PDV-a", "nema obavezu obračunati i iskazati PDV na poreznom računu", "nema obavezu izvršiti ispravku odbitka ulaznog PDV-a");
-    addQ(58, "Obveznici provođenja mjera za otkrivanje i sprečavanje pranja novca i financiranja terorističkih aktivnosti u skladu sa Zakonom o sprečavanju pranja novca i financiranja terorističkih aktivnosti, između ostalog, su:", ['a','b','c'],
-        "društvo za reviziju", "društva i poduzetnici registrirani za pružanje knjigovodstvenih i računovodstvenih usluga", "porezni savjetnik", "ništa od navedenog");
-    addQ(59, "Porezna osnovica za obračun poreza na dohodak od samostalne djelatnosti predstavlja:", ['d'],
-        "isključivo prihodi nastali obavljanjem samostalne djelatnosti u obračunskom periodu", "isključivo rashodi nastali obavljanjem samostalne djelatnosti u obračunskom periodu", "zbroj prihoda i rashoda nastalih obavljanjem samostalne djelatnosti u poreznom periodu", "razliku između prihoda i rashoda nastalih obavljanjem samostalne djelatnosti u poreznom periodu");
-    addQ(60, "Bankarskom garancijom se obvezuje banka prema primatelju garancije (korisniku) da će mu, za slučaj da mu treća osoba ne ispuni obvezu o dospjelosti, izmiriti obvezu ako budu ispunjeni uvjeti navedeni u garanciji. Ako druga banka potvrdi obvezu iz garancije, korisnik može svoje zahtjeve iz garancije podnijeti bilo banci koja je izdala garanciju, bilo onoj koja ju je potvrdila i u tom slučaju potvrda garancije se naziva:", ['c'],
+    addQ(52, "Porezna obaveza PDV-a nastaje:", ['a','b','c'],
+        "isporukom dobara", "izdavanjem fakture", "plaćanjem unaprijed", "ništa od navedenog");
+    addQ(53, "Obveznik ne može odbiti ulazni PDV na nabavku:", ['d'],
+        "električne energije", "sirovina", "teretnih vozila", "putničkih automobila");
+    addQ(54, "Porezno nepriznati rashod je:", ['b'],
+        "plaće sa doprinosima", "porez na dobit", "donacije do 3%", "metoda prosječne cijene");
+    addQ(55, "Za valjanost cesije nije potrebna saglasnost:", ['c'],
+        "cedenta", "cesionara", "cesusa (dužnika)", "svih strana");
+    addQ(56, "Donacije su porezno priznate do:", ['b'],
+        "2% prihoda", "3% prihoda", "4% prihoda", "5% prihoda");
+    addQ(57, "Prodaja poslovnog prostora nakon 12 godina:", ['d'],
+        "obračunava PDV", "ispravlja odbitak", "nema PDV", "nema ispravku odbitka");
+    addQ(58, "Obveznici mjera za sprečavanje pranja novca su:", ['a','b','c'],
+        "revizorska društva", "knjigovodstvene agencije", "porezni savjetnici", "ništa od navedenog");
+    addQ(59, "Porezna osnovica za samostalnu djelatnost je:", ['d'],
+        "samo prihodi", "samo rashodi", "zbir prihoda i rashoda", "razlika prihoda i rashoda");
+    addQ(60, "Potvrda garancije od strane druge banke naziva se:", ['c'],
         "nadgarancija", "hipergarancija", "supergarancija", "dupla garancija");
-
-    // ======================= 61 - 80 =======================
-    addQ(61, "Ulazni PDV može se odbiti za nabavku putničkih vozila za sljedeće svrhe:", ['a','d'],
-        "obavljanje rent-a-car djelatnosti", "prijevoz direktora", "prijevoz radnika s posla i na posao", "obavljanje djelatnosti auto-škole");
-    addQ(62, "Prema poreznim propisima u BiH, pravovremeno izjavljena žalba ne odgađa izvršenje rješenja poreznog organa o naknadno utvrđenim obvezama (u inspekcijskom nadzoru), po osnovi:", ['b','c','d'],
-        "poreza na dobit", "poreza na dohodak", "poreza na dodanu vrijednost", "socijalnih doprinosa");
-    addQ(63, "Pravna i fizička osoba koja nije obveznik provođenja mjera za otkrivanje i sprječavanje pranja novca i financiranja terorističkih aktivnosti iz članka 5. Zakona o sprječavanju pranja novca i financiranja terorističkih aktivnosti, a koje obavlja registriranu djelatnost prodaje robe, nepokretnosti ili vršenja usluga u BiH ne smije od klijenta ili treće osobe primiti gotov novac za njihovo plaćanje ako prelazi iznos od:", ['c'],
+    
+    // === 61-80 ===
+    addQ(61, "Ulazni PDV za putnička vozila može se odbiti za:", ['a','d'],
+        "rent-a-car", "prijevoz direktora", "prijevoz radnika", "auto-školu");
+    addQ(62, "Žalba ne odgađa izvršenje rješenja za:", ['b','c','d'],
+        "porez na dobit", "porez na dohodak", "PDV", "doprinose");
+    addQ(63, "Gotovinski limit za lica koja nisu obveznici sprečavanja pranja novca:", ['c'],
         "10.000 KM", "20.000 KM", "30.000 KM", "100.000 KM");
-    addQ(64, "Društvo XY d.o.o. iz BiH vrši isplatu dividende, odnosno udjela u dobiti u iznosu od 500.000 KM matičnom društvu ZX d.o.o. iz Republike Hrvatske (100% vlasnički udjel), s kojom Bosna i Hercegovina ima ratificiran Međunarodni ugovor o izbjegavanju dvostrukog oporezivanja. Prilikom isplate udjela u dobiti društvo XY d.o.o. iz BiH:", ['d'],
-        "nema obvezu obračuna i obustave poreza po odbitku jer je na snazi međunarodni ugovor o izbjegavanju dvostrukog oporezivanja", "nema obvezu obračuna i obustave poreza po odbitku jer su isplate dividendi neoporezive prema zakonu o porezu na dobit", "ima obvezu obračunati i obustaviti porez po odbitku u iznosu od 50.000 KM", "ima obvezu obračunati i obustaviti porez po odbitku u iznosu od 25.000 KM");
-    addQ(65, "Shodno odredbama Zakona o obligacionim odnosima prodavac odgovara za materijalne nedostatke stvari koje je ona imala u trenutku prijelaza rizika na kupca, bez obzira na to da li mu je to bilo poznato. Shodno navedenom, smatra se da postoji materijalni nedostatak ako:", ['a','b','c','d'],
-        "pravo trećeg isključuje, umanjuje ili ograničava kupčevo pravo", "ako stvar nema potrebna svojstva za naročitu upotrebu za koju je kupac nabavlja, a koja je bila poznata prodavcu ili mu je morala biti poznata", "ako stvar nema svojstva i odlike koje su izričito ili prešutno ugovorene, odnosno propisane", "kad je prodavac predao stvar koja nije saobrazna uzorku ili modelu, osim ako su uzorak ili model pokazali samo radi obavještenja");
-    addQ(66, "Prema Zakonu o porezu na dodanu vrijednost u BiH, sljedeće se oslobađa od plaćanja PDV-a:", ['a','b','c'],
-        "usluge osiguranja i reosiguranja, uključujući i prateće usluge posrednika i agenata (zastupnika) u osiguranju", "odobravanje i upravljanje kreditima, garancijama ili drugim oblicima kreditnog osiguranja od strane kreditora", "dobra u tranzitu kroz carinsko područje Bosne i Hercegovine", "ništa od navedenog");
-    addQ(67, "Nadzor nad obavljanjem poslova platnog prometa ovlaštenih organizacija kojima se uređuju njihovo poslovanje i nadležnost, u skladu sa odredbama Zakona o unutrašnjem platnom prometu, vrši:", ['d'],
-        "Ministarstvo financija", "Poreska uprava", "Agencija za posredničke, informatičke i finansijske usluge / Finansijsko-informatička agencija (FIA)", "Agencija za bankarstvo i drugi kontrolni organi");
-    addQ(68, "Zakonom o porezu na dohodak uređeno je da se porez na dohodak ne plaća na:", ['b','d'],
-        "stipendije učenika i studenata na redovnom školovanju a najviše do iznosa od 75% prosječne neto plate", "otpremninu prilikom prestanka radnog odnosa isplaćenu u skladu sa propisom kojim se uređuju radni odnosi", "korištenje službenog vozila u privatne svrhe", "jednokratnu pomoć za sanaciju štete nastale kao posljedica elementarnih nepogoda koju poslodavac isplaćuje zaposlenom do visine utvrđene posebnim propisima");
-    addQ(69, "Stalno mjesto poslovanja nerezidenta je mjesto u jednom od entiteta u Bosni i Hercegovini gdje nerezident obavlja djelatnost u cijelosti ili djelomično, a podrazumijeva naročito:", ['a','b'],
-        "mjesto rukovođenja, filijalu, kancelariju, tvornicu, prodavnicu, radionicu, rudnik, izvor nafte ili gasa, kamenolom ili neko drugo mjesto eksploatacije prirodnih resursa", "mjesto izvođenja građevinskih, instalaterskih ili montažerskih radova, kao i mjesto instalacije ili strukture koje se koriste u istraživanju ili eksploataciji prirodnih resursa ili djelatnost nadzora u vezi sa navedenim aktivnostima", "mjesto obavljanja aktivnosti radi izvršenja bilo kakve djelatnosti pripremne ili pomoćne prirode za pravno lice", "mjesto obavljanja aktivnosti za bilo koju kombinaciju djelatnosti, s tim da je cjelokupna djelatnost koja se vrši na tom mjestu poslovanja po svojoj prirodi pripremna ili pomoćna");
-    addQ(70, "Poslove koji se odnose na sprečavanje, analiziranje, istraživanje i otkrivanje i borbu protiv pranja novca, povezanih predikatnih krivičnih djela i finansiranja terorističkih aktivnosti... obavlja:", ['a'],
-        "Finansijsko-obavještajno odjeljenje", "Oružane snage Bosne i Hercegovine", "Ministarstvo odbrane Bosne i Hercegovine", "Ministarstvo pravde Bosne i Hercegovine");
-    addQ(71, "Carinska deklaracija podnosi se na jedan od sljedećih načina:", ['a','b','c'],
-        "u pisanoj formi", "elektronskom razmjenom podataka, ako to dopuštaju tehničke mogućnosti i ako upotrebu elektronskih sredstava odobri carinski organ", "usmeno ili drugom radnjom kojom imalac robe zahtijeva stavljanje robe u carinski postupak, ako je takva mogućnost predviđena provedbenim propisom", "ništa od navedenog");
-    addQ(72, "Pod komercijalnim kreditima, u smislu Zakona o deviznom poslovanju, smatraju se:", ['d'],
-        "svi oblici finansiranja koji u osnovi imaju komercijalne poslove...", "poslovi između rezidenta i nerezidenta kojima rezident uzima od nerezidenta ili daje nerezidentu zajam...", "bankarske garancije, koje banke daju u korist nerezidenta po kreditnim poslovima...", "odgođena plaćanja odnosno plaćanja unaprijed robe i usluga kao i finansiranje od banke odgođenog plaćanja i plaćanja unaprijed");
-    addQ(73, "Ugovori koje je zaključila strana ograničeno poslovno sposobna, ili kad je pri njegovom zaključenju bilo mana u pogledu volje strana, kao i kad je to Zakonom o obligacionim odnosima ili posebnim propisom određeno nazivaju se:", ['b'],
-        "ništavi ugovori", "rušljivi ugovori", "zelenaški ugovori", "dvostrani ugovori");
-    addQ(74, "Porezni obveznik PDV-a je isporučio robu drugom poreznom obvezniku po cijeni od 10.000 KM. Cijena usluga prijevoza od prodavca do kupca iznose 1.000 KM i uključena je u cijenu robe. Na računu za isporučenu robu i usluge prijevoza, kao posebna stavka su iskazane i zatezne kamate za neblagovremeno plaćanje isporuka iz ranijih razdoblja u iznosu od 1.000 KM. Porezni obveznik treba na predmetnom poreznom računu iskazati PDV u ukupnom iznosu od:", ['b'],
+    addQ(64, "Isplata dividende iz BiH u Hrvatsku (100% vlasništvo):", ['d'],
+        "nema poreza po odbitku", "neoporezivo", "50.000 KM", "25.000 KM");
+    addQ(65, "Materijalni nedostatak postoji ako:", ['a','b','c','d'],
+        "pravo trećeg ograničava kupčevo pravo", "stvar nema svojstva za ugovorenu upotrebu", "stvar nije saobrazna propisima", "stvar nije saobrazna uzorku");
+    addQ(66, "Oslobođeno od PDV-a:", ['a','b','c'],
+        "usluge osiguranja", "kreditne garancije", "dobra u tranzitu", "ništa od navedenog");
+    addQ(67, "Nadzor platnog prometa vrši:", ['d'],
+        "Ministarstvo financija", "Poreska uprava", "FIA", "Agencija za bankarstvo");
+    addQ(68, "Ne plaća se porez na dohodak na:", ['b','d'],
+        "stipendije do 75% prosjeka", "otpremninu pri prestanku rada", "službeno vozilo u privatne svrhe", "jednokratnu pomoć za elementarne nepogode");
+    addQ(69, "Stalno mjesto poslovanja nerezidenta:", ['a','b'],
+        "filijala, kancelarija, rudnik", "gradilište, instalacije", "pripremna djelatnost", "pomoćna djelatnost");
+    addQ(70, "Sprečavanje pranja novca obavlja:", ['a'],
+        "Finansijsko-obavještajno odjeljenje", "Oružane snage", "Ministarstvo odbrane", "Ministarstvo pravde");
+    addQ(71, "Carinska deklaracija podnosi se:", ['a','b','c'],
+        "pisano", "elektronski", "usmeno", "ništa od navedenog");
+    addQ(72, "Komercijalni krediti su:", ['d'],
+        "svi oblici finansiranja", "zajmovi rezidenta i nerezidenta", "bankarske garancije", "odgođena plaćanja i plaćanja unaprijed");
+    addQ(73, "Ugovor koji je zaključila ograničeno poslovno sposobna osoba je:", ['b'],
+        "ništav", "rušljiv", "zelenaški", "dvostran");
+    addQ(74, "Isporuka robe 10.000 KM, prevoz 1.000 KM uključen, kamate 1.000 KM. PDV:", ['b'],
         "170 KM", "1.700 KM", "1.870 KM", "2.040 KM");
-    addQ(75, "Prema Zakonu o PDV-u u BiH, sljedeće se oporezuje PDV-om po stopi od 17%:", ['a','b','c'],
-        "telekomunikacijske usluge", "usluge izdavanja pod zakup i podzakup poslovnih objekata", "usluge radio i televizijskih servisa koje su komercijalnog karaktera", "usluge visokog obrazovanja, sukladno propisima kojima je regulirana ta oblast");
-    addQ(76, "U vezi obaveznih elemenata poreznog računa u sistemu PDV-a tačne su sljedeće tvrdnje:", ['a','d'],
-        "Naziv, adresa i identifikacijski broj za indirektne poreze obveznika koji je isporučio dobra i/ili usluge, kao i kupca dobara i/ili usluga je obavezni element poreznog računa.", "Datum isporuke dobara i/ili usluga nije obavezni element poreznog računa.", "Datum valute ili dospijeća na plaćanje računa je obavezni element poreznog računa.", "Potpis i pečat obveznika koji je isporučio dobra i/ili usluge nisu obavezni elementi poreznog računa.");
-    addQ(77, "Prema Zakonu o PDV-u u BiH, pružanje savjetničkih usluga nerezidentima (primateljima usluga koji nemaju svoje sjedište ili prebivalište u BiH) oporezuje se prema mjestu:", ['b'],
-        "davatelja usluga", "primatelja usluga", "gdje je usluga stvarno izvršena", "ništa od prethodno navedenog");
-    addQ(78, "Prema zakonima o porezu na dobit u BiH, porezni gubici po osnovu poreza na dobit mogu se prenositi i nadoknaditi umanjenjem porezne osnovice, najdulje u periodu od:", ['c'],
-        "godinu dana", "tri godine", "pet godina", "deset godina");
-    addQ(79, "Prema propisima o oporezivanju dohotka, pri utvrđivanju oporezivog dohotka prihodi i rashodi utvrđuju se prema načelu blagajne. Iznimno, načelo blagajne ne odnosi se na:", ['b'],
-        "izdatke za nabavu sirovina i materijala", "izdatke za nabavu dugotrajne imovine", "izdatke za plaće (zarade) zaposlenih", "izdatke za obavezne doprinose vlasnika samostalne djelatnosti");
-    addQ(80, "Kod dioničkih društava, odluku o izboru vanjskog revizora donosi:", ['c'],
-        "Nadzorni odbor", "Odbor za reviziju", "Skupština", "Uprava");
-
-    // ======================= 81 - 100 =======================
-    addQ(81, "Predmet oporezivanja u samostalnoj djelatnosti predstavljaju:", ['d'],
-        "svi priljevi gotovine na poslovni račun samostalne djelatnosti", "sva primanja koja u toku godine ostvari vlasnik samostalne djelatnosti", "svi naplaćeni prihodi ostvareni obavljanjem samostalne djelatnosti", "dohodak ostvaren obavljanjem samostalne djelatnosti");
-    addQ(82, "U akcizne proizvode ubrajaju se:", ['a','d'],
-        "biogoriva", "voće uvezeno u BiH", "voda punjena u PVC ambalažu", "bezalkoholna pića");
-    addQ(83, "Privredno društvo koje ima 60 vlasnika, a osnovano je simultanim putem može postojati u pravnoj formi:", ['a','c'],
-        "otvorenog dioničkog društva", "društva sa ograničenom odgovornošću", "zatvorenog dioničkog društva", "u bilo kojoj od navedenih pravnih formi, u skladu sa osnivačkim aktom društva");
-    addQ(84, "Poduzetničku radnju u formi dopunske djelatnosti osnivaju fizička lica:", ['c'],
-        "koja se nalaze u radnom odnosu sa nepunim radnim vremenom", "koja zapošljavaju druga lica", "koja se nalaze u radnom odnosu sa punim radnim vremenom", "koja ostvaruju pravo na starosnu penziju");
-    addQ(85, "Kao emitenti vrijednosnih papira na organiziranom tržištu kapitala mogu se pojaviti:", ['b'],
-        "sva pravna lica", "samo otvorena dionička društva", "društva sa ograničenom odgovornošću", "svaki registrirani privredni subjekt");
-    addQ(86, "U ugovoru o cesiji, cesusom se smatra učesnik koji:", ['d'],
-        "prima ustupljeno potraživanje", "vrši plaćanje prema primatelju uputa po nalogu davatelja uputa", "ustupa svoje potraživanje radi izmirenja obaveze prema cedentu", "ustupa svoje potraživanje radi izmirenja obaveze prema cesionaru");
-    addQ(87, "Prema Zakonu o obligacijskim odnosima, predmet kompenzacije ne mogu biti:", ['b'],
-        "potraživanja iz dužničko-vjerovničkih odnosa nad kojima je nastupila zastara", "potraživanja nastala namjernim prouzrokovanjem štete", "potraživanja nastala na osnovu ugovora o cesiji", "potraživanja vjerovnika od njegovog dužnika sa obavezama koje vjerovnik ima prema svom jamcu");
-    addQ(88, "Razlučnim vjerovnicima u stečajnom postupku smatraju se:", ['c'],
-        "vjerovnici koji od stečajnog dužnika imaju potraživanja po osnovu poreza, doprinosa i drugih javnih prihoda", "sva lica koja su poslovala sa stečajnim dužnikom i za stečajnog dužnika tokom stečajnog postupka", "vjerovnici i koji imaju pravo na odvojeno namirenje svojih potraživanja iz određenih dijelova stečajne mase", "lica koja na osnovu svog stvarnog ili obligacijskog prava imaju pravo da traže da se neki predmet izdvoji iz stečajne mase zato što ne pripada stečajnom dužniku");
-    addQ(89, "Prema važećim propisima kojima se uređuje unutrašnji platni promet, gotovim novcem se mogu plaćati:", ['a','d'],
-        "akontacije putnih troškova i dnevnica za službena putovanja", "sve obaveze prema fizičkim licima", "obaveze prema poslovnim subjektima koji nisu registrirani porezni PDV obveznici", "obaveze po osnovu otkupa efektivnog stranog novca i čekova za potrebe poslovnih subjekata ovlaštenih za obavljanje mjenjačkih poslova");
-    addQ(90, "Akciza se, pored ostalog, obračunava i plaća na sljedeći način:", ['a','b','d'],
-        "na alkohol i alkoholna pića po litri alkohola", "na voćnu prirodnu rakiju po litri apsolutnog alkohola", "na prženu i mljevenu kafu, po svakom pakovanju", "na cigarete, proporcionalno u postotku na maloprodajnu cijenu");
-    addQ(91, "Ako drugim zakonom nije drukčije određeno, osnovni kapital društva sa ograničenom odgovornošću (d.o.o.) s jednim ili više osnivača iznosi najmanje:", ['c'],
-        "1 KM", "100 KM", "1.000 KM", "10.000 KM");
-    addQ(92, "Nadzorni odbor dioničkog društva ovlašten je:", ['c'],
-        "nadzirati poslovanje, usvajati poslovne strategije i planove poslovanja", "nadzirati rad uprave, te odobravati odluke strateškog karaktera", "podnositi skupštini godišnje izvješće o poslovanju dioničkog društva, koje obvezatno uključuje financijsko izvješće, izvješća revizora, nadzornog odbora i odbora za reviziju", "ništa od prethodno navedenog");
-    addQ(93, "Porezni obveznik PDV-a je isporučio robu drugom poreznom obvezniku po cijeni od 10.000 KM. Troškovi prijevoza od prodavatelja do kupca iznose 1.000 KM i uključeni su u cijenu isporučene robe. Na računu za isporučenu robu, kao posebna stavka su iskazane i zatezne kamate za neblagovremeno plaćanje isporuka iz ranijih razdoblja u iznosu od 1.000 KM. Porezni obveznik treba na predmetnom poreznom računu iskazati PDV u ukupnom iznosu od:", ['b'],
-        "170 KM", "1.700 KM", "1.870 KM", "2.040 KM");
-    addQ(94, "U sistemu PDV-a, među obvezne elemente poreznog računa spadaju i:", ['a','b','d'],
-        "naziv, adresa i identifikacijski broj za indirektne poreze obveznika koji je isporučio dobra i/ili usluge, kao i primatelja dobara i/ili usluga", "datum isporuke dobara i/ili usluga", "datum valute ili dospijeća na plaćanje računa", "potpis i pečat obveznika koji je isporučio dobra i/ili usluge");
-    addQ(95, "U neoporezive prihode od nesamostalne djelatnosti ubraja se i:", ['b'],
-        "plaća u novcu isplaćena zaposleniku za rad kod poslodavca (prema ugovoru o radu)", "hrana koju poslodavac osigurava zaposlenicima u svojim prostorijama, do vrijednosti naknade za topli obrok, utvrđene posebnim propisima", "izmirivanje osobnih troškova od strane poslodavca", "odobreni beskamatni krediti ili krediti s kamatnom stopom nižom od tržišne kamatne stope");
-    addQ(96, "Ako bruto plaća iznosi 1.000 KM, a obvezni doprinosi iz plaće iznose 310 KM, koliko iznosi porez na dohodak (po stopi od 10%) od nesamostalne djelatnosti u Federaciji BiH, za poreznog obveznika (zaposlenika) koji ima osnovni osobni odbitak sa koeficijentom 3,00:", ['a'],
-        "0 KM", "39 KM", "69 KM", "100 KM");
-    addQ(97, "Ako je potraživanje poduzeća Alfa prema poduzeću Beta dospjelo na plaćanje 15. 01. i potraživanje poduzeća Beta prema poduzeću Alfa dospjelo na plaćanje 20. 04., a kompenzacija je izjavljena od strane Alfa prema Beta dana 30. 06., prema Zakonu o obligacijskim odnosima, smatra se da je kompenzacija nastala (nastupila):", ['b'],
-        "15. 01.", "20. 04.", "30. 06.", "kompenzacija nije nastala dok druga strana (Beta) nije dala suglasnost na istu");
-    addQ(98, "Prema Zakonu o porezu na dobit, u obračun porezne osnovice ne uključuju se:", ['a','b'],
-        "prihodi od usklađivanja vrijednosti zaliha", "prihodi od naplaćenih otpisanih potraživanja, koji su u prethodnim poreznim periodima bili uključeni u poreznu osnovicu, a nisu bili priznati kao rashod u poreznoj bilanci", "dobici od prodaje stalnih sredstava", "dobici utvrđeni direktno u kapitalu");
-    addQ(99, "Koje su od navedenih tvrdnji vezanih za porezni gubitak točne:", ['a','c'],
-        "porezni gubitak predstavlja negativnu razliku između prihoda i rashoda u postupku utvrđivanja porezne osnovice", "porezni gubitak se iskazuje i u računovodstvenim i u poreznim evidencijama", "porezni gubitak se ne knjiži u računovodstvu", "ako se iskaže gubitak u poreznoj bilanci, on se može prenijeti na račun dobiti budućih obračunskih razdoblja, ali ne dulje od 3 (tri) godine");
-    addQ(100, "U prihod od samostalne djelatnosti uključuju se prihodi iz:", ['a','d'],
-        "samostalnih (slobodnih) zanimanja", "članstva u organima i tijelima u kojima se plaća naknada za rad članovima", "sportskih stipendija", "poljoprivrede i šumarstva");
-
-    // ======================= 101 - 120 =======================
-    addQ(101, "Prema odredbama Zakona o privrednim društvima dionička društva mogu biti:", ['b','c'],
-        "privatna", "zatvorena", "otvorena", "međunarodna");
-    addQ(102, "Prema odredbama Zakona o obligacijskim odnosima, ugovorne strane kod ugovora o asignaciji su:", ['a','b','d'],
-        "asignant (uputitelj)", "asignatar (primatelj upute)", "indosant (prenositelj)", "asignat (upućenik)");
-    addQ(103, "Zvanični kurs konvertibilne marke određuje:", ['a'],
-        "Centralna banka BiH", "Nova banka a.d. Banja Luka", "NLB banka d.d. Sarajevo", "Komercijalna banka a.d. Banja Luka");
-    addQ(104, "Likvidacioni postupak se sprovodi nad:", ['c'],
-        "domaćim fizičkim licima", "međunarodnom zajednicom", "pravnim licima", "stranim fizičkim licima");
-    addQ(105, "Nadzor nad obračunavanjem i plaćanjem doprinosa vrši:", ['d'],
-        "Ministarstvo unutrašnjih poslova", "Uprava za indirektno oporezivanje", "Ministarstvo financija", "Porezna uprava");
-    addQ(106, "Duhanske prerađevine, kafa, alkoholna pića, voćne prirodne rakije i vina (izuzev alkoholnih) koja nisu obilježena akciznim markicama, kao i proizvodi nepravilno obilježeni markicama, smatraju se:", ['b'],
-        "akciznim proizvodima na koje je obračunata akciza, ali nije plaćena", "akciznim proizvodima na koje nije obračunata niti plaćena akciza", "akciznim proizvodima na koje nije obračunata akciza, ali je plaćena", "akciznim proizvodima na koje je i obračunata i plaćena akciza");
-    addQ(107, "Porez na dobit plaća se po stopi od:", ['d'],
-        "3%", "1%", "20%", "10%");
-    addQ(108, "Osnovni kapital društva sa ograničenom odgovornošću može se povećati:", ['b','c'],
-        "prijenosom udjela na nasljednike", "pretvaranjem raspoloživih rezervi u osnovni kapital", "novim ulozima članova", "ništa od navedenog");
-    addQ(109, "Uprava društva nadležna je da:", ['b'],
-        "donosi odluke o povećanju i smanjenju upisanog temeljnog kapitala", "organizira rad i rukovodi poslovanjem, zastupa i predstavlja društvo i odgovara za zakonitost poslovanja društva", "donosi odluke o izboru vanjskog revizora", "donosi odluke o promjeni oblika i podjeli društva");
-    addQ(110, "Prema Zakonu o PDV-u u BiH, sljedeće se oslobađa od plaćanja PDV-a:", ['b'],
-        "izvoz dobara iz BiH", "usluge visokog obrazovanja, sukladno propisima kojima je regulirana ta oblast", "usluge izdavanja pod zakup i podzakup poslovnih objekata", "usluge radio i televizijskih servisa koje su komercijalnog karaktera");
-    addQ(111, "Društvo XY d.o.o. porezni je obveznik indirektnih poreza iz BiH koji po osnovi ugovora o zakupu izdaje proizvodnu halu (zgradu sa pripadajućim zemljištem). Proizvodni pogon je smješten na području BiH, a zakupac je društvo iz Njemačke. Ugovorom je definirana zakupnina od 10.000 eura mjesečno (bez pripadajućih indirektnih poreza ako postoje). Društvo XY d.o.o. će na mjesečnoj fakturi za zakup proizvodne hale:", ['a'],
-        "iskazati pripadajući iznos PDV-a po stopi od 17%", "neće iskazati iznos PDV-a jer su takve usluge oslobođene od oporezivanja", "neće iskazati iznos PDV-a jer se takve usluge smatraju izvozom", "neće iskazati iznos PDV-a jer se takve usluge oporezuju prema mjestu primatelja usluge (što je u konkretnom slučaju Njemačka)");
-    addQ(112, "Prema Zakonu o PDV-u, posebna shema za naplatu PDV-a na promet povezan s građevinskim radovima primjenjuje se na promet građevinskih radova nastao između:", ['b'],
-        "investitora i izvođača radova", "izvođača radova i kooperanta", "investitora i kooperanta", "investitora, izvođača radova i kooperanta");
-    addQ(113, "Porez na dohodak ne plaća se na:", ['a','b','c','d'],
-        "Mirovine (penzije)", "stipendije učenicima i studentima na redovnom školovanju (neovisno od visine stipendije)", "prihod od dividendi i udjela u dobiti društva", "primanja po osnovi organizirane socijalne pomoći");
-    addQ(114, "U oporezive prihode od nesamostalne djelatnosti (plaću po osnovi radnog odnosa) ubrajaju se:", ['c','d'],
-        "naknade putnih troškova i dnevnica zaposlenima u svrhu službenih putovanja, do iznosa utvrđenog posebnim propisima", "hrana koju poslodavac osigurava uposlenicima u svojim prostorijama, do vrijednosti naknade za topli obrok, utvrđene posebnim propisima", "podmirivanje osobnih troškova od strane poslodavca", "odobreni beskamatni zajmovi ili zajmovi s kamatnom stopom nižom od tržišne kamatne stope");
-    addQ(115, "Pod uslugama koje su oslobođene od plaćanja PDV-a podrazumijevamo:", ['a','b'],
-        "javne poštanske usluge, osim telekomunikacionih usluga", "usluge osiguranja i reosiguranja, uključujući i prateće usluge posrednika i agenata (zastupnika) u osiguranju", "usluge reklamiranja", "usluge koje pružaju savjetnici, inženjeri, advokati, revizori, računovođe i tumači");
-    addQ(116, "Prema Zakonu o obligacionim odnosima, ako posljednji dan roka pada u dan kada je zakonom određeno da se ne radi, kao posljednji dan roka računa se:", ['d'],
-        "prethodni radni dan", "neradni dan na koji posljednji dan roka pada", "prvi radni dan u prvoj punoj radnoj sedmici sljedećeg mjeseca", "sljedeći radni dan");
-    addQ(117, "Ako nakon provedenog likvidacionog postupka, te namirenja troškova postupka i svih povjerilaca, preostane određeni dio imovine poslovnog subjekta, taj ostatak se raspodjeljuje:", ['a'],
-        "vlasnicima kapitala poslovnog subjekta razmjerno učešću u vlasništvu", "u dobrotvorne svrhe", "likvidacionom upravniku", "Poreznoj upravi");
-    addQ(118, "Pravo žalbe na odluku carinskog organa koja se odnosi na primjenu carinskih propisa ima osoba na koju se ta odluka odnosi, s tim da podnošenje žalbe na odluku carinskog organa:", ['d'],
-        "odgađa izvršenje odluke", "poništava odluku", "ukida pravosnažnost odluke", "ne odgađa izvršenje odluke");
-    addQ(119, "Sumnjiva transakcija prema Zakonu o sprečavanju pranja novca i financiranja terorističkih aktivnosti predstavlja:", ['c','d'],
-        "bilo kakvo primanje, davanje, čuvanje, razmjenu, prijenos, raspolaganje ili drugo rukovanje novcem ili imovinom od strane obveznika uključujući i gotovinsku transakciju", "svaku transakciju pri kojoj obveznik fizički prima ili daje gotov novac klijentu", "svaku transakciju za koju obveznik ili nadležni organ procijeni da u vezi s transakcijom ili osobom koja obavlja transakciju postoje opravdani razlozi za sumnju ili sumnja na počinjenje krivičnog djela pranja novca ili financiranja terorističkih aktivnosti", "dvije ili više transakcija koje potiču s računa ili su usmjerene na račun ili na pravnu ili fizičku osobu... koje zajedno prekoračuju iznos od 30.000 KM...");
-    addQ(120, "Prema odredbama Zakona o privrednim društvima prokura predstavlja:", ['a'],
-        "pisano ovlaštenje za poduzimanje svih pravnih radnji i poslova u ime i za račun društva, osim prijenosa i opterećenja nekretnina, ako ovlaštenje za to nije posebno i izričito navedeno", "usmeno ovlaštenje koje imenovanoj osobi daje mogućnost da zaključuje vanjskotrgovinske poslove u svoje ime i za svoj račun", "pisano ovlaštenje za uvid u poslovne tajne privrednog društva", "pisano ovlaštenje koje imenovanoj osobi osigurava zastupanje članova obiteljskog kućanstva pred poreznim organima");
-
-    // ======================= 121 - 140 =======================
-    addQ(121, "Porezna osnovica PDV-a kod prometa dobara i usluga jeste oporezivi iznos naknade koju obveznik primi ili treba da primi za isporučena dobra ili pružene usluge, a ta naknada može biti izražena u:", ['b','c','d'],
-        "kriptovalutama", "uslugama", "novcu", "stvarima");
-    addQ(122, "Skupština privrednog društva nadležna je za:", ['b','d'],
-        "predlaganje godišnjeg financijskog izvještaja društva", "usvajanje godišnjeg financijskog izvještaja društva", "predlaganje odluke o rasporedu dobiti, odnosno načinu pokrića gubitka", "odlučivanje o rasporedu dobiti, odnosno načinu pokrića gubitka");
-    addQ(123, "Kod dioničkih društava, odbor za reviziju je nadležan za:", ['c'],
-        "zastupanje dioničkog društva u pravnom prometu", "donošenje odluke o prodaji stalnih sredstava", "kontrolu usklađenosti poslovanja društva i funkcioniranja tijela društva s zakonom i drugim relevantnim propisima i temeljnim načelima korporativnog upravljanja", "ništa od prethodno navedenog");
-    addQ(124, "Kod društava kapitala (d.d. i d.o.o.) povećanje temeljnog kapitala može se vršiti iz:", ['a','b','c'],
-        "dobiti tekuće godine", "akumulirane dobiti", "fonda rezervi", "revalorizacijskih rezervi");
-    addQ(125, "Prema Zakonu o PDV-u u BiH od plaćanja PDV-a oslobođene su:", ['b'],
-        "telekomunikacijske usluge", "usluge visokog obrazovanja, u skladu s propisima kojima je regulirana ta oblast", "usluge izdavanja pod zakup i podzakup poslovnih objekata", "usluge radio i televizijskih servisa koje su komercijalnog karaktera");
-    addQ(126, "Stope po kojima se obračunava PDV u Bosni i Hercegovini su:", ['c'],
-        "17% (osnovna) i 10% (snižena)", "17% (osnovna), 5% (snižena) i 25% (za luksuzna dobra)", "17% (osnovna) i 0% (za izvoz)", "ništa od prethodno navedenog");
-    addQ(127, "Među obavezne elemente poreznog računa spadaju i:", ['a','b','d'],
-        "naziv, adresa i identifikacijski broj za indirektne poreze obveznika koji je isporučio dobra i/ili usluge, kao i kupca dobara i/ili usluga", "datum isporuke dobara i/ili usluga", "datum valute ili dospijeća na plaćanje računa", "potpis i pečat obveznika koji je isporučio dobra i/ili usluge");
-    addQ(128, "Porezni gubici (negativna razlika između prihoda i rashoda u postupku utvrđivanja porezne osnovice poreza na dobit) mogu se nadoknaditi umanjivanjem porezne osnovice, najduže u narednih:", ['c'],
+    addQ(75, "Oporezuje se po stopi 17%:", ['a','b','c'],
+        "telekomunikacijske usluge", "zakup poslovnih objekata", "komercijalne radio usluge", "visoko obrazovanje");
+    addQ(76, "Obavezni elementi PDV računa:", ['a','d'],
+        "naziv i ID broj kupca i prodavatelja", "datum isporuke nije obavezan", "datum dospijeća obavezan", "potpis i pečat nisu obavezni");
+    addQ(77, "Savjetničke usluge za nerezidente oporezuju se prema mjestu:", ['b'],
+        "davatelja", "primatelja", "izvršenja", "ništa od navedenog");
+    addQ(78, "Porezni gubitak se prenosi najduže:", ['c'],
         "1 godinu", "3 godine", "5 godina", "10 godina");
-    addQ(129, "Ako bruto plaća zaposlenika iznosi 1.000 KM, a obavezni doprinosi iz plaće iznose 310 KM, porez na dohodak (obračunan po stopi od 10%) iznosit će:", ['c'],
+    addQ(79, "Načelo blagajne ne odnosi se na:", ['b'],
+        "sirovine", "dugotrajnu imovinu", "plaće", "doprinose vlasnika");
+    addQ(80, "Izbor vanjskog revizora kod d.d. donosi:", ['c'],
+        "Nadzorni odbor", "Odbor za reviziju", "Skupština", "Uprava");
+    
+    // === 81-100 ===
+    addQ(81, "Predmet oporezivanja samostalne djelatnosti:", ['d'],
+        "priljevi gotovine", "sva primanja vlasnika", "naplaćeni prihodi", "dohodak od djelatnosti");
+    addQ(82, "Akcizni proizvodi:", ['a','d'],
+        "biogoriva", "uvezeno voće", "voda u PVC ambalaži", "bezalkoholna pića");
+    addQ(83, "Društvo sa 60 vlasnika osnovano simultano može biti:", ['a','c'],
+        "otvoreno d.d.", "d.o.o.", "zatvoreno d.d.", "bilo koja forma");
+    addQ(84, "Dopunsku djelatnost osnivaju lica:", ['c'],
+        "sa nepunim radnim vremenom", "koja zapošljavaju druge", "sa punim radnim vremenom", "penzioneri");
+    addQ(85, "Emitent na organiziranom tržištu kapitala može biti:", ['b'],
+        "sva pravna lica", "samo otvorena d.d.", "d.o.o.", "svaki registrirani subjekt");
+    addQ(86, "Cesus u cesiji je:", ['d'],
+        "primalac potraživanja", "platac po uputu", "ustupilac prema cedentu", "ustupilac prema cesionaru");
+    addQ(87, "Kompenzacija ne može:", ['b'],
+        "zastarjela potraživanja", "šteta nanijeta namjerno", "potraživanja iz cesije", "potraživanje vjerovnika prema jamcu");
+    addQ(88, "Razlučni vjerovnici:", ['c'],
+        "porezni dugovi", "poslovni partneri tokom stečaja", "pravo na odvojeno namirenje", "izdvajanje tuđe stvari");
+    addQ(89, "Gotovinsko plaćanje moguće:", ['a','d'],
+        "akontacije putnih troškova", "sve obaveze prema fizičkim licima", "prema nePDV obveznicima", "otkup efektivnog stranog novca");
+    addQ(90, "Akciza se obračunava:", ['a','b','d'],
+        "na alkohol po litri alkohola", "na voćnu rakiju po litri aps. alkohola", "na kafu po pakovanju", "na cigarete proporcionalno");
+    addQ(91, "Minimalni osnovni kapital d.o.o.:", ['c'],
+        "1 KM", "100 KM", "1.000 KM", "10.000 KM");
+    addQ(92, "Nadzorni odbor d.d. je ovlašten:", ['c'],
+        "nadzirati poslovanje", "odobravati strategije", "podnositi izvještaj skupštini", "ništa od navedenog");
+    addQ(93, "PDV na robu 10.000 KM + prevoz uključen 1.000 KM + kamate 1.000 KM:", ['b'],
+        "170 KM", "1.700 KM", "1.870 KM", "2.040 KM");
+    addQ(94, "Obavezni elementi PDV računa:", ['a','b','d'],
+        "naziv i ID broj", "datum isporuke", "datum valute", "potpis i pečat");
+    addQ(95, "Neoporezivi primici od nesamostalne djelatnosti:", ['b'],
+        "plaća", "hrana u prostorijama poslodavca", "podmireni lični troškovi", "beskamatni krediti");
+    addQ(96, "Porez na dohodak (lični odbitak 3,0):", ['a'],
+        "0 KM", "39 KM", "69 KM", "100 KM");
+    addQ(97, "Kompenzacija nastupa:", ['b'],
+        "15.01.", "20.04.", "30.06.", "saglasnošću Bete");
+    addQ(98, "U poreznu osnovicu ne ulaze:", ['a','b'],
+        "usklađivanje zaliha", "naplaćena otpisana potraživanja", "dobit od prodaje", "dobici u kapitalu");
+    addQ(99, "Porezni gubitak:", ['a','c'],
+        "negativna razlika", "iskazuje se u obje evidencije", "ne knjiži se", "prenosi se 3 godine");
+    addQ(100, "Prihodi samostalne djelatnosti:", ['a','d'],
+        "slobodna zanimanja", "članarine u organima", "sportske stipendije", "poljoprivreda");
+    
+    // === 101-120 ===
+    addQ(101, "Dionička društva mogu biti:", ['b','c'],
+        "privatna", "zatvorena", "otvorena", "međunarodna");
+    addQ(102, "Ugovorne strane kod asignacije:", ['a','b','d'],
+        "asignant", "asignatar", "indosant", "asignat");
+    addQ(103, "Zvanični kurs KM određuje:", ['a'],
+        "Centralna banka BiH", "Nova banka", "NLB banka", "Komercijalna banka");
+    addQ(104, "Likvidacioni postupak se sprovodi nad:", ['c'],
+        "fizičkim licima", "međunarodnom zajednicom", "pravnim licima", "stranim fizičkim licima");
+    addQ(105, "Nadzor nad doprinosima vrši:", ['d'],
+        "MUP", "Uprava za indirektno oporezivanje", "Ministarstvo financija", "Porezna uprava");
+    addQ(106, "Proizvodi bez akciznih markica:", ['b'],
+        "obračunata akciza", "nije obračunata akciza", "obračunata ali nije plaćena", "obračunata i plaćena");
+    addQ(107, "Stopa poreza na dobit:", ['d'],
+        "3%", "1%", "20%", "10%");
+    addQ(108, "Povećanje osnovnog kapitala d.o.o.:", ['b','c'],
+        "prijenosom udjela", "pretvaranjem rezervi", "novim ulozima", "ništa od navedenog");
+    addQ(109, "Uprava društva je nadležna za:", ['b'],
+        "povećanje kapitala", "organizaciju rada i zastupanje", "izbor revizora", "promjenu oblika");
+    addQ(110, "Oslobođeno od PDV-a:", ['b'],
+        "izvoz", "visoko obrazovanje", "zakup poslovnih objekata", "komercijalne radio usluge");
+    addQ(111, "Zakup hale njemačkom društvu:", ['a'],
+        "17% PDV", "oslobođeno", "izvoz", "mjesto primatelja");
+    addQ(112, "Posebna shema za građevinarstvo odnosi se na odnos:", ['b'],
+        "investitor-izvođač", "izvođač-kooperant", "investitor-kooperant", "svi navedeni");
+    addQ(113, "Ne plaća se porez na dohodak na:", ['a','b','c','d'],
+        "penzije", "stipendije", "dividende", "socijalnu pomoć");
+    addQ(114, "Oporezivi prihodi od nesamostalne djelatnosti:", ['c','d'],
+        "putni troškovi", "topli obrok", "lični troškovi", "beskamatni krediti");
+    addQ(115, "Oslobođene usluge PDV-a:", ['a','b'],
+        "javne poštanske usluge", "osiguranje", "reklamiranje", "savjetovanje");
+    addQ(116, "Zadnji dan roka pada na neradni dan, rok je:", ['d'],
+        "prethodni radni", "taj isti", "prvi radni sljedeće sedmice", "sljedeći radni");
+    addQ(117, "Ostatak imovine nakon likvidacije pripada:", ['a'],
+        "vlasnicima kapitala", "dobrotvorne svrhe", "likvidatoru", "Poreznoj upravi");
+    addQ(118, "Žalba na carinsku odluku:", ['d'],
+        "odgađa izvršenje", "poništava odluku", "ukida pravosnažnost", "ne odgađa izvršenje");
+    addQ(119, "Sumnjiva transakcija:", ['c','d'],
+        "bilo kakvo primanje novca", "gotovinska transakcija", "opravdana sumnja na pranje novca", "dvije transakcije preko 30.000 KM");
+    addQ(120, "Prokura je:", ['a'],
+        "pisano ovlaštenje", "usmeno ovlaštenje", "ovlaštenje za uvid u tajne", "ovlaštenje za zastupanje članova");
+    
+    // === 121-140 ===
+    addQ(121, "Naknada za PDV može biti izražena u:", ['b','c','d'],
+        "kriptovalutama", "uslugama", "novcu", "stvarima");
+    addQ(122, "Skupština društva je nadležna za:", ['b','d'],
+        "predlaganje izvještaja", "usvajanje izvještaja", "predlaganje raspodjele dobiti", "odlučivanje o raspodjeli dobiti");
+    addQ(123, "Odbor za reviziju je nadležan za:", ['c'],
+        "zastupanje", "prodaju sredstava", "kontrolu usklađenosti", "ništa od navedenog");
+    addQ(124, "Povećanje temeljnog kapitala iz:", ['a','b','c'],
+        "dobiti tekuće godine", "akumulirane dobiti", "fonda rezervi", "revalorizacijskih rezervi");
+    addQ(125, "Oslobođeno od PDV-a:", ['b'],
+        "telekomunikacije", "visoko obrazovanje", "zakup poslovnih objekata", "komercijalne radio usluge");
+    addQ(126, "Stope PDV-a u BiH:", ['c'],
+        "17% i 10%", "17%, 5%, 25%", "17% i 0%", "ništa od navedenog");
+    addQ(127, "Obavezni elementi PDV računa:", ['a','b','d'],
+        "naziv i ID broj", "datum isporuke", "datum valute", "potpis i pečat");
+    addQ(128, "Prenos poreznog gubitka najduže:", ['c'],
+        "1 godinu", "3 godine", "5 godina", "10 godina");
+    addQ(129, "Porez na dohodak od 1.000 KM bruto:", ['c'],
         "0 KM", "31 KM", "69 KM", "100 KM");
-    addQ(130, "Potraživanje društva Alfa prema društva Beta dospjelo je na plaćanje dana 15. 02. 2022., a potraživanje poduzeća Beta prema poduzeću Alfa dospjelo na plaćanje 20. 03. 2022. Dana 25. 04. 2022. izjavljena je kompenzacija društva Alfa prema društvu Beta. Prema Zakonu o obligacijskim odnosima u BiH, smatra se da je kompenzacija nastupila:", ['b'],
-        "dana 15. 02. 2022.", "dana 20. 03. 2022.", "dana 25. 04. 2022.", "kompenzacija nije nastala sve dok druga strana (Beta) nije dala suglasnost na istu");
-    addQ(131, "U skladu sa Zakonom o porezu na dobit, sljedeći rashodi se ne priznaju pri utvrđivanju porezne osnovice:", ['b','c','d'],
-        "izdaci za reprezentaciju u vezi s poslovnom djelatnošću poreznog obveznika u iznosu od 30% od troškova reprezentacije", "rashodi prinudne naplate javnih prihoda", "porez po odbitku koji je obračunat i plaćen na vlastiti teret isplatioca", "pokloni i prilozi dati političkim strankama i organizacijama");
-    addQ(132, "Prema Zakonu o sprječavanju pranja novca i financiranja terorističkih aktivnosti Bosne i Hercegovine, mjere za otkrivanje i sprječavanje pranja novca i financiranja terorističkih aktivnosti u skladu s ovim zakonom provode sljedeći obveznici:", ['a','b','c'],
+    addQ(130, "Kompenzacija nastupa:", ['b'],
+        "15.02.", "20.03.", "25.04.", "saglasnošću");
+    addQ(131, "Porezno nepriznati rashodi:", ['b','c','d'],
+        "reprezentacija 30%", "prinudna naplata", "porez po odbitku na teret isplatioca", "pokloni političkim strankama");
+    addQ(132, "Obveznici sprečavanja pranja novca:", ['a','b','c'],
         "lizing društva", "pošte", "notari", "ništa od navedenog");
-    addQ(133, "Prema Zakonu o zanatsko-preduzetničkoj djelatnosti Republike Srpske odnosno Zakonu o obrtu i srodnim djelatnostima Federacije BiH preduzetnička djelatnost odnosno obrt može se obavljati kao:", ['b','c','d'],
+    addQ(133, "Obrt se može obavljati kao:", ['b','c','d'],
         "ograničeno zanimanje", "osnovno zanimanje", "dopunsko zanimanje", "dodatno zanimanje");
-    addQ(134, "Prema Zakonu o porezu na dobit, povezanim osobama smatraju se sljedeće osobe:", ['b','c'],
-        "fizička i pravna osoba koja posjeduje neposredno ili posredno do 15% glasačkih prava u drugoj pravnoj osobi", "fizička i pravna osoba koje posjeduje neposredno ili posredno najmanje 25% dionica ili udjela u drugoj pravnoj osobi", "bračni i izvanbračni drug, potomci usvojenici i potomci usvojenika, roditelji, usvojitelji, braća i sestre i njihovi potomci", "ništa od navedenog");
-    addQ(135, "Obavezi obračunavanja i plaćanja poreza na dohodak ne podliježu:", ['b','c'],
-        "rezidenti BiH za dohodak ostvaren u Republici Srpskoj, Federaciji BiH, Brčko Distriktu BiH ili drugoj državi", "funkcionari i stručnjaci programa za tehničku pomoć Organizacije ujedinjenih nacija i njenih specijaliziranih agencija", "šefovi stranih konzulata u BiH i konzularni funkcionari ovlašteni da obavljaju konzularne funkcije, kao i članovi njihovih domaćinstava, ako ti članovi nisu državljani ili rezidenti BiH", "nerezidenti za dohodak ostvaren u BiH");
-    addQ(136, "Prema odredbama Zakona o privrednim društvima, društvo s ograničenom odgovornošću prestaje:", ['a','b'],
-        "odlukom skupštine", "pravnosnažnom odlukom suda", "odlukom upravnog odbora", "odlukom direktora");
-    addQ(137, "Odbor za reviziju mora se obavezno formirati (u Federaciji BiH), a može se odrediti (u Republici Srpskoj) kod:", ['d'],
-        "društva s neograničenom solidarnom odgovornošću", "komanditnog društva", "društva s ograničenom odgovornošću", "dioničkog (akcionarskog) društva");
-    addQ(138, "PDV obveznik ne može ostvariti pravo na odbitak ulaznog PDV-a na:", ['c'],
-        "nabavku sirovina i materijala za proizvodnju proizvoda u okviru redovite djelatnosti", "nabavku dobara za pripremu toplog obroka radnika u toku rada", "nabavku putničkih automobila, koja koristi za prijevoz djelatnika u upravi i prodaji", "nabavku putničkih automobila, koja koristi za obavljanje svoje registrirane oporezive djelatnosti prijevoza putnika i dobara");
-    addQ(139, "Bruto plaća zaposlenika iznosi 1.000 KM, a obavezni doprinosi iz plaće iznose 310 KM. Zaposlenik ima pravo na osobni odbitak (neoporezivi dohodak) u iznosu od 660 KM. Porez na dohodak (po stopi od 10%) od nesamostalne djelatnosti (ličnih primanja) bit će obračunat u iznosu u od:", ['b'],
+    addQ(134, "Povezane osobe:", ['b','c'],
+        "15% glasačkih prava", "25% dionica", "bračni drug, potomci, roditelji", "ništa od navedenog");
+    addQ(135, "Ne podliježe porezu na dohodak:", ['b','c'],
+        "rezidenti za dohodak u BiH", "funkcionari UN", "šefovi konzulata", "nerezidenti za dohodak u BiH");
+    addQ(136, "Prestanak d.o.o.:", ['a','b'],
+        "odlukom skupštine", "sudskom odlukom", "odlukom direktora", "odlukom upravnog odbora");
+    addQ(137, "Odbor za reviziju obavezan kod:", ['d'],
+        "društva s neograničenom solidarnom odgovornošću", "komanditnog društva", "d.o.o.", "d.d.");
+    addQ(138, "Nema odbitak ulaznog PDV-a za:", ['c'],
+        "sirovine", "topli obrok radnika", "putničke automobile za upravu", "putničke automobile za prijevoz putnika");
+    addQ(139, "Porez na dohodak (osobni odbitak 660 KM):", ['b'],
         "0 KM", "3 KM", "30 KM", "69 KM");
-    addQ(140, "Prema Zakonu o privrednim društvima u Federaciji BiH, konačna odluka o kupovini, prodaji, zamjeni, uzimanju ili davanju u lizing, uzimanju ili davanju kredita i drugim transakcijama imovinom, izravno ili posredstvom supsidijarnih društava, tijekom poslovne godine u opsegu većem od 33% knjigovodstvene vrijednosti imovine dioničkog društva po bilanci stanja na kraju prethodne godine, je u nadležnosti:", ['d'],
-        "Uprave (direktora)", "Nadzornog odbora", "Odbor za reviziju", "Skupštine");
-
-    // ======================= 141 - 160 =======================
-    addQ(141, "Obveznici provođenja mjera za otkrivanje i sprječavanje pranja novca i financiranja terorističkih aktivnosti u skladu sa zakonom su:", ['a','b','c','d'],
-        "banke", "pravne i fizičke osobe koja obavljaju usluge poreznog savjetovanja", "računovođe", "revizori");
-    addQ(142, "Prema zakonu o porezu na dobit za utvrđivanje porezne osnovice priznaju se:", ['b'],
-        "svi rashodi, prihodi i kapitalna dobit/gubitak u iznosima koji su iskazani u poslovnim knjigama, a koji su sukladni računovodstvenim propisima, neovisno o odredbama zakona o porezu na dobit", "svi rashodi, prihodi i kapitalna dobit/gubitak u iznosima koji su iskazani u poslovnim knjigama, a koji su sukladni računovodstvenim propisima, ukoliko nije drukčije propisano zakonom o porezu na dobit", "svi rashodi, prihodi i kapitalna dobit/gubitak u iznosima koji su iskazani u skladu s zakonom o porezu na dobit, neovisno o iznosima iskazanim u poslovnim knjigama", "ništa od prethodno navedenog");
-    addQ(143, "Svojstvo pravnog lica privredno društvo stiče:", ['b'],
-        "donošenjem osnivačkog akta", "upisom u registar poslovnih subjekata", "preduzimanjem prve pravne radnje u pravnom prometu", "usmenim dogovorom osnivača");
-    addQ(144, "Svako lice je dužno da se registruje prema Zakonu o porezu na dodanu vrijednost kao porezni obveznik ukoliko oporezivi promet dobrima ili uslugama i promet dobrima oslobođenim uz kredit u prethodnoj godini prelazi ili je vjerovatno da će preći prag od:", ['a'],
+    addQ(140, "Odluka o transakcijama >33% imovine d.d.:", ['d'],
+        "Uprava", "Nadzorni odbor", "Odbor za reviziju", "Skupština");
+    
+    // === 141-160 ===
+    addQ(141, "Obveznici mjera protiv pranja novca:", ['a','b','c','d'],
+        "banke", "porezni savjetnici", "računovođe", "revizori");
+    addQ(142, "Priznavanje rashoda za porez na dobit:", ['b'],
+        "prema računovodstvenim propisima", "računovodstveni osim ako je drukčije propisano", "samo porezni propisi", "ništa od navedenog");
+    addQ(143, "Svojstvo pravnog lica se stiče:", ['b'],
+        "osnivačkim aktom", "upisom u registar", "prvom radnjom", "dogovorom");
+    addQ(144, "Prag za obaveznu registraciju za PDV:", ['a'],
         "100.000 KM", "50.000 KM", "30.000 KM", "10.000 KM");
-    addQ(145, "Pod pranjem novca u smislu Zakona o sprečavanju pranja novca i finansiranja terorističkih aktivnosti Bosne i Hercegovine podrazumijeva se:", ['a','b','c'],
-        "zamjena ili prenos imovine, kada se zna da je imovina stečena kriminalnim aktivnostima ili učešćem u takvoj aktivnosti, a s ciljem prikrivanja ili zataškavanja nezakonitog porijekla imovine...", "prikrivanje ili zataškavanje prave prirode, izvora, mjesta porijekla, raspolaganja, kretanja, prava povezanih s vlasništvom ili vlasništva nad imovinom...", "sticanje, posjedovanje ili korištenje imovine ako se zna u vrijeme prijema da je ta imovina stečena kriminalnom aktivnošću ili učešćem u takvoj aktivnosti", "osiguravanje ili prikupljanje novčanih sredstava ili druge imovine, bez obzira da li potiče iz legalnih ili nelegalnih izvora... od terorista ili terorističke organizacije...");
-    addQ(146, "Skupština društva je nadležna da:", ['b','c','d'],
-        "organizira rad i rukovodi poslovanjem, zastupa i predstavlja društvo i odgovara za zakonitost poslovanja društva", "donosi odluke o promjeni oblika i podjeli društva", "donosi odluke o povećanju i smanjenju temeljnog kapitala", "donosi odluke o izboru vanjskog revizora");
-    addQ(147, "Prema Zakonu o porezu na dodanu vrijednost u BiH, porezom na dodanu vrijednost po stopi od 17% se oporezuje:", ['b','c'],
-        "izvoz dobara iz BiH", "usluge izdavanja pod zakup i podzakup poslovnih objekata", "usluge radio i televizijskih servisa koje su komercijalnog karaktera", "usluge visokog obrazovanja, u skladu s propisima kojima je regulirana ta oblast");
-    addQ(148, "Inspekcijski nadzor nad primjenom Zakona o porezu na dodanu vrijednost u BiH vrši:", ['d'],
-        "Ministarstvo financija i trezora", "Ministarstvo financija entiteta", "Porezna uprava entiteta", "Uprava za indirektno oporezivanje");
-    addQ(149, "Ako osnivačkim aktom društva sa ograničenom odgovornošću nije drugačije određeno, direktor ili upravni odbor nadležan je za:", ['a'],
-        "zastupanje društva i vođenje poslova društva u skladu sa zakonom, osnivačkim aktom i ugovorom članova društva", "odobravanje finansijskih izvještaja i raspodjeli dobiti i načinu pokrića gubitaka...", "sazivanje sjednica skupštine članova društva i utvrđivanje prijedloga dnevnog reda", "povećanje i smanjenje osnovnog kapitala društva, stjecanje vlastitih udjela i povlačenje...");
-    addQ(150, "Devizno tržište čine svi poslovi kupovine i prodaje deviza i efektivnog stranog novca koji se vrše neposredno:", ['a','b','c'],
-        "između ovlaštenih banaka, odnosno banaka i rezidenata, kao i između ovlaštenih banaka, odnosno banaka i nerezidenata", "između ovlaštenih banaka, odnosno banaka i rezidenata koji imaju ovlaštenje za obavljanje mjenjačkih poslova", "između ovlaštenih banaka koje kupuju i prodaju devize i strane gotovine izvan deviznog tržišta", "ništa od navedenog");
-    addQ(151, "Načelo ekonomičnosti, u smislu Zakona o stečaju, predstavlja:", ['d'],
-        "grupno i srazmjerno namirenje stečajnih povjerilaca, u skladu sa zakonom o stečaju", "osiguravanje jednakog tretmana i ravnopravan položaj povjerilaca istog isplatnog reda", "kolektivno i srazmjerno namirenje stečajnih povjerilaca, u skladu sa zakonom o stečaju", "omogućavanje ostvarivanja najveće moguće vrijednosti imovine dužnika u postupku restrukturiranja i stečajnog dužnika i najvećeg mogućeg stepena namirenja povjerilaca u što kraćem vremenu i sa što manje troškova");
-    addQ(152, "Prema odredbama Zakona o privrednim društvima, dioničko društvo, između ostalog, prestaje:", ['d'],
-        "neobavljanjem poslova neprekidno u periodu od dvije godine", "odlukom ortaka o prestanku", "pravnosnažnom odlukom skupštine dioničara", "stečajem");
-    addQ(153, "Shodno odredbama Zakona o obligacionim odnosima, u slučaju kad je ugovor zaključen prema unaprijed odštampanom sadržaju, ili kad je ugovor bio na drugi način pripremljen i predložen od jedne ugovorne strane, nejasne odredbe tumače se:", ['a'],
-        "u korist druge strane", "u korist strane koja je pripremila i predložila ugovor", "u korist obje strane", "bez favorizovanja bilo koje strane");
-    addQ(154, "Shodno odredbama Zakona o likvidacionom postupku, organi likvidacionog postupka su:", ['b','c'],
-        "skupština povjerilaca", "likvidacioni upravnik (likvidator)", "likvidacioni sudija", "odbor povjerilaca");
-    addQ(155, "Porez po odbitku plaća se na sljedeće isplate prihoda nerezidentu:", ['a','b','d'],
-        "dividende i udjele u dobiti", "za zakup pokretne imovine", "kamate po kreditima za nabavku proizvodne opreme", "naknade po osnovu autorskog prava i srodnih prava i prava intelektualne svojine...");
-    addQ(156, "Uprava za indirektno/neizravno oporezivanje BiH može tražiti bankarsku garanciju kako bi osigurala odgođeno plaćanje iznosa duga po osnovu indirektnog poreza. Kada je dužnikova nemogućnost dobijanja bankarske garancije opravdana, Uprava za indirektno/neizravno oporezivanje BiH može prihvatiti, kao vrstu garancije:", ['a','b','c'],
-        "hipoteku", "zalog sa ili bez izmještanja pokretne imovine", "dobrovoljnu i zajedničku garancija trećih lica", "ništa od navedenog");
-    addQ(157, "Prema Zakonu o PDV-u u BiH, obveznik može ostvariti pravo na odbitak ulaznog poreza na:", ['a','b','c'],
-        "nabavku električne energije za potrebe proizvodnog postrojenja", "nabavku sirovina i materijala za obavljanje svoje poslovne djelatnosti", "nabavku teretnih vozila za obavljanje svoje poslovne djelatnosti", "nabavku putničkih automobila, osim ako ta prijevozna sredstva koristi isključivo za obavljanje svoje poslovne djelatnosti");
-    addQ(158, "Poduzeće prodaje poslovni prostor za koji je prilikom nabavke koristilo odbitak ulaznog PDV-a. Poslovni prostor se prodaje istekom 8 godine od perioda nabavke istog. Porezni obveznik prilikom prodaje poslovnog prostora:", ['b'],
-        "ima obavezu obračunati i iskazati PDV na poreznom računu", "ima obavezu izvršiti ispravku srazmjernog dijela korištenog odbitka ulaznog PDV-a", "nema obavezu obračunati i iskazati PDV na poreznom računu", "nema obavezu izvršiti ispravku odbitka ulaznog PDV-a");
-    addQ(159, "Porezno priznatim rashodima prema zakonu o porezu na dobit smatraju se:", ['a','d'],
-        "rashodi plaća na koje su obračunati pripadajući porezi i doprinosi", "rashodi na ime plaćenog poreza na dobit", "rashodi donacija nepovezanim licima do visine do 3% ukupnog prihoda", "rashodi nastali na ime evidentiranja zaliha u iznosima iskazanim primjenom metode prosječne nabavne cijene");
-    addQ(160, "Ukoliko neto plaća iznosi 1.000,00 KM, obavezni doprinosi iz plaće iznose 484,22 KM, a porez na dohodak 77,78 KM, koliko iznosi bruto plaća:", ['c'],
-        "1.077,78 KM", "1.484,22 KM", "1.562,00 KM", "1.726,00 KM");
+    addQ(145, "Pranje novca je:", ['a','b','c'],
+        "zamjena imovine", "prikrivanje porijekla", "posjedovanje imovine stečene kriminalom", "prikupljanje sredstava za teroriste");
+    addQ(146, "Skupština je nadležna:", ['b','c','d'],
+        "organizacija rada", "promjena oblika", "povećanje kapitala", "izbor revizora");
+    addQ(147, "Oporezuje se po stopi 17%:", ['b','c'],
+        "izvoz", "zakup poslovnih objekata", "komercijalne radio usluge", "visoko obrazovanje");
+    addQ(148, "Inspekcijski nadzor PDV-a vrši:", ['d'],
+        "Ministarstvo financija", "entitetsko ministarstvo", "entitetska Porezna uprava", "Uprava za indirektno oporezivanje");
+    addQ(149, "Direktor d.o.o. je nadležan za:", ['a'],
+        "zastupanje i vođenje poslova", "odobravanje finansijskih izvještaja", "sazivanje skupštine", "povećanje kapitala");
+    addQ(150, "Devizno tržište čine poslovi:", ['a','b','c'],
+        "između banaka i rezidenata", "između banaka i mjenjačnica", "između banaka izvan tržišta", "ništa od navedenog");
+    addQ(151, "Načelo ekonomičnosti u stečaju:", ['d'],
+        "grupno namirenje", "jednak tretman", "kolektivno namirenje", "najveća vrijednost uz najmanje troškove");
+    addQ(152, "Prestanak d.d.:", ['d'],
+        "neobavljanje 2 godine", "odlukom ortaka", "odlukom skupštine", "stečajem");
+    addQ(153, "Nejasne odredbe ugovora tumače se:", ['a'],
+        "u korist druge strane", "u korist pripremača", "u korist obje strane", "bez favoriziranja");
+    addQ(154, "Organi likvidacionog postupka:", ['b','c'],
+        "skupština povjerilaca", "likvidacioni upravnik", "likvidacioni sudija", "odbor povjerilaca");
+    addQ(155, "Porez po odbitku na isplate nerezidentu:", ['a','b','d'],
+        "dividende", "zakup pokretne imovine", "kamate za opremu", "autorske naknade");
+    addQ(156, "Uprava za indirektno oporezivanje može prihvatiti kao garanciju:", ['a','b','c'],
+        "hipoteku", "zalog", "garanciju trećih lica", "ništa od navedenog");
+    addQ(157, "Pravo na odbitak ulaznog PDV-a na:", ['a','b','c'],
+        "električnu energiju", "sirovine", "teretna vozila", "putnička vozila (osim izuzetaka)");
+    addQ(158, "Prodaja poslovnog prostora nakon 8 godina:", ['b'],
+        "obračun PDV-a", "ispravak odbitka", "nema PDV", "nema ispravku");
+    addQ(159, "Priznati rashodi poreza na dobit:", ['a','d'],
+        "plaće sa doprinosima", "plaćeni porez na dobit", "donacije", "metoda prosječne cijene zaliha");
+    addQ(160, "Bruto plaća (neto 1.000, doprinosi 484,22, porez 77,78):", ['c'],
+        "1.077,78", "1.484,22", "1.562,00", "1.726,00");
 
-    // ========== JavaScript logika kviza ==========
+    // ========== LOGIKA PRIKAZIVANJA ==========
     let userSelections = [];
     function initSelections() {
         userSelections = [];
@@ -530,22 +525,21 @@
         }
     }
 
-    function isQuestionCorrect(idx) {
+    function isCorrect(idx) {
         const q = questionsData[idx];
         const sel = userSelections[idx];
-        const corrects = q.correctLetters;
-        for (let l of corrects) if (!sel[l]) return false;
-        for (let l of ['a','b','c','d']) if (sel[l] && !corrects.includes(l)) return false;
+        for (let l of q.correctLetters) if (!sel[l]) return false;
+        for (let l of ['a','b','c','d']) if (sel[l] && !q.correctLetters.includes(l)) return false;
         return true;
     }
 
-    function computeScore() { let s=0; for(let i=0;i<questionsData.length;i++) if(isQuestionCorrect(i)) s++; return s; }
-    function answeredTotal() { return userSelections.filter(s => Object.values(s).some(v=>v===true)).length; }
+    function computeScore() { let s=0; for(let i=0;i<questionsData.length;i++) if(isCorrect(i)) s++; return s; }
+    function answeredCount() { return userSelections.filter(s => Object.values(s).some(v=>v)).length; }
 
     function updateStats() {
-        document.getElementById('answeredCounter').innerText = `📌 Odgovoreno: ${answeredTotal()} / ${questionsData.length}`;
+        document.getElementById('answeredCounter').innerText = `📌 Odgovoreno: ${answeredCount()} / ${questionsData.length}`;
         document.getElementById('scoreCounter').innerHTML = `⭐ Bodovi: ${computeScore()} / ${questionsData.length}`;
-        document.getElementById('resultsPanel').innerHTML = `📊 Ukupno bodova: ${computeScore()} / ${questionsData.length} (tačnih pitanja) — klikni "Provjeri sve" za detalje.`;
+        document.getElementById('resultsPanel').innerHTML = `📊 Ukupno bodova: ${computeScore()} / ${questionsData.length} (tačnih pitanja).`;
     }
 
     function updateSingleFeedback(idx) {
@@ -553,14 +547,16 @@
         if (!fb) return;
         const anyMarked = Object.values(userSelections[idx]).some(v=>v);
         if (!anyMarked) { fb.innerHTML = "❌ Niti jedna opcija nije označena."; fb.className = "feedback"; return; }
-        if (isQuestionCorrect(idx)) { fb.innerHTML = "✅ Tačno! Svi tačni odgovori su označeni."; fb.className = "feedback correct"; }
+        if (isCorrect(idx)) { fb.innerHTML = "✅ Tačno! Svi tačni odgovori su označeni."; fb.className = "feedback correct"; }
         else { fb.innerHTML = "⚠️ Netočno ili nepotpuno. Provjeri tačne opcije."; fb.className = "feedback wrong"; }
     }
 
     function renderAll() {
         const container = document.getElementById('questionsContainer');
+        if (!container) return;
         container.innerHTML = '';
-        questionsData.forEach((q, idx) => {
+        for (let idx = 0; idx < questionsData.length; idx++) {
+            const q = questionsData[idx];
             const card = document.createElement('div');
             card.className = 'question-card';
             card.innerHTML = `<div class="question-text">${q.num}. ${q.text}</div><div class="options-list" id="opts-${idx}"></div><div class="feedback" id="fb-${idx}"></div>`;
@@ -573,7 +569,7 @@
                 cb.type = 'checkbox';
                 cb.className = 'option-check';
                 cb.checked = userSelections[idx][opt.letter];
-                cb.addEventListener('change', (e) => {
+                cb.addEventListener('change', () => {
                     userSelections[idx][opt.letter] = cb.checked;
                     updateSingleFeedback(idx);
                     updateStats();
@@ -586,7 +582,7 @@
                 optsDiv.appendChild(label);
             });
             updateSingleFeedback(idx);
-        });
+        }
         updateStats();
     }
 
